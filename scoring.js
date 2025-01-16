@@ -23,7 +23,7 @@ class Scoring{
     }
   }
 
-  sort(list){
+  sort(){
     this.sortedDice.sort()
   }
 
@@ -60,6 +60,8 @@ class Scoring{
         console.log('three of a kind:\t ' + this.threeOfAKind());
         console.log('four of a kind:\t ' + this.fourOfAKind());
         console.log('full house:\t ' + this.fullHouse());
+        console.log('small straight:\t ' + this.smallStraight());
+        console.log('large straight:\t ' + this.largeStraight());
   }
 
 
@@ -83,6 +85,33 @@ class Scoring{
       return 25; 
     else
       return 0;
+  }
+
+  smallStraight(){
+    let dupe = 0;
+    for (let i = 0; i < this.sortedDice.length; i++) {
+
+      'check if dupe exist'
+      if(this.sortedDice[i + 1] == this.sortedDice[i])
+        dupe += 1
+
+      if(this.sortedDice[i + 1] - this.sortedDice[i] != 1 && dupe >= 1)
+          return 0;
+    }
+  }
+
+    largeStraight(){
+      let dupe = 0;
+      for (let i = 0; i < this.sortedDice.length; i++) {
+
+        'check if dupe exist'
+        if(this.sortedDice[i + 1] == this.sortedDice[i])
+          dupe += 1
+  
+        if(this.sortedDice[i + 1] - this.sortedDice[i] != 1 || dupe > 0)
+            return 0;
+      }
+    return this.sumCountedDice();
   }
 
   displayCount(){
