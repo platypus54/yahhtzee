@@ -7,7 +7,6 @@ class Scoring{
     this.sortedDice = [];
     this.countedDice = [];
 
-    this.sortedDice.fill(0,0,5);
     for (var i = 0; i < 5; i++) {
       this.sortedDice[i] = 0;
     }
@@ -42,12 +41,59 @@ class Scoring{
     }
   }
 
+  sumCountedDice(){
+    let sum = 0;
+    for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
+      sum += (outcomes + 1) * this.countedDice[outcomes];
+    
+      console.log( sum )
+      return sum;
+    }
+  }
+
+
+
+
   calculateUpperScore(){
     for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
       console.log( (outcomes + 1) * this.countedDice[outcomes] )
-      
   }
   }
+
+
+  calculateLowerScore(){
+        console.log(this.threeOfAKind());
+        console.log(this.fourOfAKind());
+        console.log(this.fullHouse());
+  }
+
+
+
+
+  threeOfAKind(){
+    
+    if(this.find(3) == null)
+      return 0; 
+    else
+      return sumCountedDice();
+  }
+
+  fourOfAKind(){
+    if(this.find(4) == null)
+      return 0; 
+    else
+      return sumCountedDice();
+  }
+
+  fullHouse(){
+    if(this.find(3) == null && this.find(2) == null)
+      return 0; 
+    else
+      return 25;
+  }
+
+
+  
 
   displayCount(){
     for (let i = 0; i < this.countedDice.length; i++) {
@@ -61,4 +107,18 @@ class Scoring{
   }
 }
 
+  find(key){
+    for (let i = 0; i < this.countedDice.length; i++) {
+        if(this.countedDice[i] == key)
+          return i;
+        else
+          return null;
+    }
+
+  }
+
+  reset(){
+    for (let i = 0; i < this.countedDice.length; i++)
+      this.countedDice[i] = 0;
+  }
 }

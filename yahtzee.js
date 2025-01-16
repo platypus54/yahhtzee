@@ -21,6 +21,11 @@ function main()
     score.displaySort();
     score.displayCount();
     score.calculateUpperScore();
+    console.log("----- lower -----");
+    score.calculateLowerScore();
+
+    score.reset();
+
     game_rolls += 1
 
   }
