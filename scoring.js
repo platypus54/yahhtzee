@@ -46,7 +46,6 @@ class Scoring{
     for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
       sum += (outcomes + 1) * this.countedDice[outcomes];
     }
-    console.log('sumCountedDice:' + sum)
     return sum;
   }
 
@@ -58,32 +57,32 @@ class Scoring{
 
 
   calculateLowerScore(){
-        console.log(this.threeOfAKind());
-        console.log(this.fourOfAKind());
-        console.log(this.fullHouse());
+        console.log('three of a kind:\t ' + this.threeOfAKind());
+        console.log('four of a kind:\t ' + this.fourOfAKind());
+        console.log('full house:\t ' + this.fullHouse());
   }
 
 
   threeOfAKind(){
     
     if(this.find(3))
-      return 0; 
+      return this.sumCountedDice(); 
     else
-      return this.sumCountedDice();
+      return 0;
   }
 
   fourOfAKind(){
     if(this.find(4))
-      return 0; 
+      return this.sumCountedDice(); 
     else
-      return this.sumCountedDice();
+      return 0;
   }
 
   fullHouse(){
     if(this.find(3) && this.find(2))
-      return 0; 
+      return 25; 
     else
-      return 25;
+      return 0;
   }
 
   displayCount(){
