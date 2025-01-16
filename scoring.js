@@ -23,7 +23,7 @@ class Scoring{
     }
   }
 
-  sort(list){
+  sort(){
     this.sortedDice.sort()
   }
 
