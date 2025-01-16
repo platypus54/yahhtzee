@@ -23,7 +23,7 @@ class Scoring{
     }
   }
 
-  sort(){
+  sort(list){
     this.sortedDice.sort()
   }
 
@@ -45,18 +45,14 @@ class Scoring{
     let sum = 0;
     for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
       sum += (outcomes + 1) * this.countedDice[outcomes];
-    
-      console.log( sum )
-      return sum;
     }
+    console.log('sumCountedDice:' + sum)
+    return sum;
   }
-
-
-
 
   calculateUpperScore(){
     for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
-      console.log( (outcomes + 1) * this.countedDice[outcomes] )
+       console.log((outcomes + 1) + '\'s\t' + (outcomes + 1) * this.countedDice[outcomes]); 
   }
   }
 
@@ -68,53 +64,46 @@ class Scoring{
   }
 
 
-
-
   threeOfAKind(){
     
-    if(this.find(3) == null)
+    if(this.find(3))
       return 0; 
     else
-      return sumCountedDice();
+      return this.sumCountedDice();
   }
 
   fourOfAKind(){
-    if(this.find(4) == null)
+    if(this.find(4))
       return 0; 
     else
-      return sumCountedDice();
+      return this.sumCountedDice();
   }
 
   fullHouse(){
-    if(this.find(3) == null && this.find(2) == null)
+    if(this.find(3) && this.find(2))
       return 0; 
     else
       return 25;
   }
 
-
-  
-
   displayCount(){
     for (let i = 0; i < this.countedDice.length; i++) {
-      console.log(i + '\t' + this.countedDice[i] +'\t')      
+      console.log('die' + (i + 1) + '\t' + this.countedDice[i] +'\t')      
     }
   }
 
   displaySort(){
     for (let i = 0; i < this.sortedDice.length; i++) {
-      console.log(i + '\t' + this.sortedDice[i] +'\t')      
+      console.log('sorted_die:' + (i + 1) + '\t value of dice:' + this.sortedDice[i] +'\t')      
   }
 }
 
   find(key){
     for (let i = 0; i < this.countedDice.length; i++) {
         if(this.countedDice[i] == key)
-          return i;
-        else
-          return null;
+          return true;
     }
-
+    return false
   }
 
   reset(){
