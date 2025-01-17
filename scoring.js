@@ -88,30 +88,28 @@ class Scoring{
   }
 
   smallStraight(){
-    let dupe = 0;
+    let count = 0, dupe = 0;
+
     for (let i = 0; i < this.sortedDice.length; i++) {
-
-      'check if dupe exist'
-      if(this.sortedDice[i + 1] == this.sortedDice[i])
-        dupe += 1
-
-      if(this.sortedDice[i + 1] - this.sortedDice[i] != 1 && dupe >= 1)
-          return 0;
-    }
-  }
-
-    largeStraight(){
-      let dupe = 0;
-      for (let i = 0; i < this.sortedDice.length; i++) {
-
-        'check if dupe exist'
         if(this.sortedDice[i + 1] == this.sortedDice[i])
           dupe += 1
-  
-        if(this.sortedDice[i + 1] - this.sortedDice[i] != 1 || dupe > 0)
-            return 0;
-      }
-    return this.sumCountedDice();
+        else if(this.sortedDice[i + 1] - this.sortedDice[i] == 1 && dupe < 2)
+           count += 1;
+     }
+
+     if(count == 4)
+      return this.sumCountedDice();
+     else
+      return 0;
+
+    }
+
+    largeStraight(){  
+      for (let i = 0; i < this.sortedDice.length; i++)
+        if(this.sortedDice[i + 1] - this.sortedDice[i] != 1)
+           return 0;
+      return this.sumCountedDice()
+
   }
 
   displayCount(){
