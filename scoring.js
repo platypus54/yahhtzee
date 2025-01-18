@@ -88,28 +88,22 @@ class Scoring{
   }
 
   smallStraight(){
-    let count = 0, dupe = 0;
-
-    for (let i = 0; i < this.sortedDice.length; i++) {
-        if(this.sortedDice[i + 1] == this.sortedDice[i])
-          dupe += 1
-        else if(this.sortedDice[i + 1] - this.sortedDice[i] == 1 && dupe < 2)
-           count += 1;
-     }
-
-     if(count == 4)
-      return this.sumCountedDice();
-     else
-      return 0;
-
+    '1234 , 2345, 3456'
     }
 
     largeStraight(){  
-      for (let i = 0; i < this.sortedDice.length; i++)
-        if(this.sortedDice[i + 1] - this.sortedDice[i] != 1)
-           return 0;
-      return this.sumCountedDice()
+      '12345,23456'
+  }
 
+  yahtzee(){
+    if(this.find(5))
+      return 50; 
+    else
+      return 0;
+  }
+
+  chance(){
+    return this.sumCountedDice();
   }
 
   displayCount(){
