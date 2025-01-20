@@ -4,11 +4,14 @@ MAX_DICE = 5;
 class Scoring{
 
   constructor() {
+
     this.sortedDice = [];
     this.countedDice = [];
+    this.noDupes = [];
 
     for (var i = 0; i < 5; i++) {
       this.sortedDice[i] = 0;
+      this.noDupes[i] = 0;
     }
 
     for (var i = 0; i < 6; i++) {
@@ -16,18 +19,16 @@ class Scoring{
     }
 
   } 
-
   copy(list){
     for (let dice = 0; dice < list.length; dice++) {
       this.sortedDice[dice] = list[dice].get_value();
+      'this.sortedDice[dice] =  list[dice]'
     }
   }
 
   sort(){
     this.sortedDice.sort()
   }
-
-
 
   count(){
 
@@ -64,45 +65,91 @@ class Scoring{
         console.log('large straight:\t ' + this.largeStraight());
   }
 
-
-  threeOfAKind(){
-    
+  threeOfAKind()
+  {
     if(this.find(3))
       return this.sumCountedDice(); 
     else
       return 0;
   }
 
-  fourOfAKind(){
+  fourOfAKind()
+  {
     if(this.find(4))
       return this.sumCountedDice(); 
     else
       return 0;
   }
 
-  fullHouse(){
+  fullHouse()
+  {
     if(this.find(3) && this.find(2))
       return 25; 
     else
       return 0;
   }
 
-  smallStraight(){
-    '1234 , 2345, 3456'
+  removeDuplicates()
+  {
+    this.noDupes[0] = this.sortedDice[0];
+    
+    for(let i = 1; i < this.noDupes.length; i++)
+    {
+      if(this.noDupes[i - 1] != this.sortedDice[i]) 'check previous to see if dupe'
+        
+      this.noDupes[i] = this.sortedDice[i]; 
     }
-
-    largeStraight(){  
-      '12345,23456'
   }
 
-  yahtzee(){
+  smallStraight() {
+    let possibles = [[1,2,3,4], [2,3,4,5],[3,4,5,6]];
+    let count = 0;
+
+    this.removeDuplicates();
+
+    for(let i = 0; i < possibles.length && count != 4; i++){
+      
+      for(let j = 0; j < 5; j++)
+        if(possibles[i][j] == this.noDupes[j])
+          count += 1;
+
+      if(count == 4)
+        return this.sumCountedDice();
+      else
+        count = 0;
+
+    }
+      return 0;    
+  }
+
+    largeStraight() {  
+      let possibles = [[1,2,3,4,5],[2,3,4,5,6]]
+      let count = 0;
+
+      for(let i = 0; i < possibles.length && count != 5; i++){
+        
+        for(let j = 0; j < this.sortedDice.length; j++)
+           if(possibles[i][j] == this.sortedDice[j])
+            count += 1;
+
+        if(count == 5)
+          return this.sumCountedDice();
+        else
+          count = 0;
+      }
+
+      return 0;
+
+  }
+
+  yahtzee() {
     if(this.find(5))
       return 50; 
     else
       return 0;
   }
 
-  chance(){
+  chance() {
     return this.sumCountedDice();
   }
 
