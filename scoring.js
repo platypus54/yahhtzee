@@ -1,8 +1,6 @@
-MAX_OUTCOMES = 6;
-MAX_DICE = 5;
-
 class Scoring{
 
+// default 
   constructor() {
 
     this.sortedDice = [];
@@ -19,51 +17,59 @@ class Scoring{
     }
 
   } 
-  copy(list){
-    for (let dice = 0; dice < list.length; dice++) {
-      this.sortedDice[dice] = list[dice].get_value();
-      'this.sortedDice[dice] =  list[dice]'
-    }
+
+  copy(list)
+  {
+    for (let dice = 0; dice < list.length; dice++)
+      this.sortedDice[dice] = list[dice].getValue();
   }
 
-  sort(){
+  sort()
+  {
     this.sortedDice.sort()
   }
 
-  count(){
-
+  count()
+  {
     this.sort()
+
     let total = 0;
 
-    for (let outcomes = 0; outcomes < this.sortedDice.length; outcomes++) {
+    for (let outcomes = 0; outcomes < this.sortedDice.length; outcomes++) 
+      {
         let dice_value = this.sortedDice[outcomes];
+
         'decrease by 1 to fit range'
         this.countedDice[dice_value - 1] += 1
     }
   }
 
-  sumCountedDice(){
+  find(key){
+    for (let i = 0; i < this.countedDice.length; i++) {
+        if(this.countedDice[i] == key)
+          return true;
+    }
+    return false
+  }
+
+  reset(){
+    for (let i = 0; i < this.countedDice.length; i++)
+      this.countedDice[i] = 0;
+  }
+
+
+
+  sumCountedDice()
+  {
     let sum = 0;
-    for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
+    for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) 
+    {
       sum += (outcomes + 1) * this.countedDice[outcomes];
     }
     return sum;
   }
 
-  calculateUpperScore(){
-    for (let outcomes = 0; outcomes < this.countedDice.length; outcomes++) {
-       console.log((outcomes + 1) + '\'s\t' + (outcomes + 1) * this.countedDice[outcomes]); 
-  }
-  }
 
-
-  calculateLowerScore(){
-        console.log('three of a kind:\t ' + this.threeOfAKind());
-        console.log('four of a kind:\t ' + this.fourOfAKind());
-        console.log('full house:\t ' + this.fullHouse());
-        console.log('small straight:\t ' + this.smallStraight());
-        console.log('large straight:\t ' + this.largeStraight());
-  }
 
   threeOfAKind()
   {
@@ -86,7 +92,7 @@ class Scoring{
     if(this.find(3) && this.find(2))
       return 25; 
     else
-      return 0;
+      return 0;  
   }
 
   removeDuplicates()
@@ -100,7 +106,6 @@ class Scoring{
       this.noDupes[i] = this.sortedDice[i]; 
     }
   }
-
   smallStraight() {
     let possibles = [[1,2,3,4], [2,3,4,5],[3,4,5,6]];
     let count = 0;
@@ -121,8 +126,7 @@ class Scoring{
     }
       return 0;    
   }
-
-    largeStraight() {  
+  largeStraight() {  
       let possibles = [[1,2,3,4,5],[2,3,4,5,6]]
       let count = 0;
 
@@ -137,21 +141,24 @@ class Scoring{
         else
           count = 0;
       }
-
       return 0;
-
   }
-
   yahtzee() {
     if(this.find(5))
       return 50; 
     else
       return 0;
   }
-
   chance() {
     return this.sumCountedDice();
   }
+
+  
+
+
+
+
+
 
   displayCount(){
     for (let i = 0; i < this.countedDice.length; i++) {
@@ -165,16 +172,4 @@ class Scoring{
   }
 }
 
-  find(key){
-    for (let i = 0; i < this.countedDice.length; i++) {
-        if(this.countedDice[i] == key)
-          return true;
-    }
-    return false
-  }
-
-  reset(){
-    for (let i = 0; i < this.countedDice.length; i++)
-      this.countedDice[i] = 0;
-  }
 }
