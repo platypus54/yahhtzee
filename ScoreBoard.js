@@ -1,45 +1,82 @@
-const upperCategories = ["Ones", "Twos", "Threes", "Fours", "Fives", "Sixes"];
-
-const lowerCategories = [
-    "Three of a Kind", "Four of a Kind", "Full House",
-    "Small Straight", "Large Straight", "Yahtzee", "Chance"
+const upperCategories = [
+"Ones", 
+"Twos", 
+"Threes", 
+"Fours", 
+"Fives", 
+"Sixes",
+"Upper Bonus",
+"Upper Total"
 ];
 
-const upperSection = document.getElementById("upper-section");
-const lowerSection = document.getElementById("lower-section");
-const upperTotalEl = document.getElementById("upper-total");
-const upperBonusEl = document.getElementById("upper-bonus");
-const lowerTotalEl = document.getElementById("lower-total");
-const grandTotalEl = document.getElementById("grand-total");
-
-const diceContainer = document.getElementById("dice-container");
-
+const lowerCategories = [
+"Three of a Kind", 
+"Four of a Kind", 
+"Full House",
+"Small Straight", 
+"Large Straight", 
+"Yahtzee", 
+"Chance",
+"Bonus Yahtzee",
+"Total"
+];
 
 class ScoreBoard {
-  constructor() {
-    this.score = new Scoring;
-    this.upperScore = [];
-    this.total_upper = 0;
-    this.bonus_uppper = 0;
+  
+constructor() {
+  this.score = new Scoring;
+  this.upperScore = new Map();
+  this.lowerScore = new Map();
 
-    this.lowerScore = [];
-    this.total_lower = 0;
-    this.bonus_lower = 0;
-    this.yahtzee_bonus = 0; 
+  upperCategories.forEach(category => {
+    this.upperScore.set(category, 0);
+  });
 
-    for (var i = 0; i < 5; i++) {
-      this.upperScore[i] = 0;
-      this.lowerScore[i] = 0;
-    }
+  lowerCategories.forEach(category => {
+    this.lowerScore.set(category, 0)
+  })
+}
+
+
+calculateUpperScore(){
+  
+  this.upperScore.forEach(category => {
+  })
+
+  for (let outcomes = 0; outcomes < this.score.countedDice.length; outcomes++) {
+      (outcomes + 1) * this.countedDice[outcomes]; 
   }
 
-  
+
+
+
+}
+
+calculateLowerScore(){
+  let temp = [];
+  temp[0] = this.threeOfAKind;
+  temp[1] = this.fourOfAKind;
+  temp[2] = this.smallStraight;
+  temp[3] = this.largeStraight;
+  temp[4] = this.fullHouse; 
+  temp[5] = this.yahtzee;
+  temp[6] = this.chance;
+  return temp;
+}
+
+calculateScores() {
 
 }
 
 
+printScoreBoard(){
+  
+  
+}
 
 
+
+}
 
 class Category {
   constructor() {
