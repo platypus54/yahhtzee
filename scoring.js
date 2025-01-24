@@ -1,27 +1,16 @@
+// logic and processes to handle yahtzee related calculations.
 class Scoring{
 
-// default 
   constructor() {
-
-    this.sortedDice = [];
-    this.countedDice = [];
-    this.noDupes = [];
-
-    for (var i = 0; i < 5; i++) {
-      this.sortedDice[i] = 0;
-      this.noDupes[i] = 0;
-    }
-
-    for (var i = 0; i < 6; i++) {
-      this.countedDice[i] = 0;
-    }
-
+  this.sortedDice = Array(5).fill(0)
+  this.countedDice = Array(6).fill(0)
   } 
 
   copy(list)
   {
-    for (let dice = 0; dice < list.length; dice++)
-      this.sortedDice[dice] = list[dice].getValue();
+      list.forEach((dice, index) => {
+        this.sortedDice[index] = dice.getValue();
+      });
   }
 
   sort()
@@ -29,6 +18,7 @@ class Scoring{
     this.sortedDice.sort()
   }
 
+  // update
   count()
   {
     this.sort()
@@ -44,19 +34,15 @@ class Scoring{
     }
   }
 
-  find(key){
-    for (let i = 0; i < this.countedDice.length; i++) {
-        if(this.countedDice[i] == key)
-          return true;
-    }
-    return false
-  }
+   find(key){
+    this.countedDice.includes(key);
+   }
+
 
   reset(){
     for (let i = 0; i < this.countedDice.length; i++)
       this.countedDice[i] = 0;
   }
-
 
 
   sumCountedDice()
@@ -68,8 +54,6 @@ class Scoring{
     }
     return sum;
   }
-
-
 
   threeOfAKind()
   {
@@ -95,37 +79,24 @@ class Scoring{
       return 0;  
   }
 
-  removeDuplicates()
-  {
-    this.noDupes[0] = this.sortedDice[0];
-    
-    for(let i = 1; i < this.noDupes.length; i++)
-    {
-      if(this.noDupes[i - 1] != this.sortedDice[i]) 'check previous to see if dupe'
-        
-      this.noDupes[i] = this.sortedDice[i]; 
-    }
-  }
   smallStraight() {
+
     let possibles = [[1,2,3,4], [2,3,4,5],[3,4,5,6]];
+    let noDupes = new Set(this.sortedDice);
     let count = 0;
 
-    this.removeDuplicates();
-
-    for(let i = 0; i < possibles.length && count != 4; i++){
-      
-      for(let j = 0; j < 5; j++)
-        if(possibles[i][j] == this.noDupes[j])
-          count += 1;
-
+    for (outcome of possibles) {
+      outcome.forEach((value) => {
+        if(noDupes.includes(value)) 
+          count++;
+      })
       if(count == 4)
         return this.sumCountedDice();
-      else
-        count = 0;
-
     }
-      return 0;    
+    return 0;
   }
+
+  // update eventually
   largeStraight() {  
       let possibles = [[1,2,3,4,5],[2,3,4,5,6]]
       let count = 0;
@@ -149,15 +120,10 @@ class Scoring{
     else
       return 0;
   }
+
   chance() {
     return this.sumCountedDice();
   }
-
-  
-
-
-
-
 
 
   displayCount(){
