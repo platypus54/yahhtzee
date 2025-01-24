@@ -20,29 +20,36 @@ function main()
 {
   
   diceList = new DiceCollection;
-  score = new Scoring
-  game_rolls = 0;
-  game_turns = 0;
-
-
-  while (game_rolls < 3)
-  {
-    
-    console.log("ROLL:\t" + game_rolls)
-    diceList.roll()
-    
-    score.copy(diceList.yahtzeeDice)
-
-    score.count();
-
-    score.calculateUpperScore();
-    score.calculateLowerScore();
-
-    score.reset();
-
-    game_rolls += 1
-
-  }
   
+  scoreboard = new ScoreBoard;
+  let game_rolls = 0;
+  let game_turns = 16;
+  let selections = 16;
 
+
+      document.getElementById("roll").addEventListener("click", function() {
+          if (game_rolls < 3){
+            diceList.roll()   
+            scoreboard.score.copy(diceList.yahtzeeDice);
+            scoreboard.score.count();
+            scoreboard.calculateScores();
+            scoreboard.score.reset();
+            game_rolls += 1
+         }else{
+          // make a selection 
+          alert("roll limit reached. make a selection")
+          document.getElementById("ones").addEventListener("click", function(){
+            this.style.backgroundColor = "lightblue";
+          })
+         }
+    
+        }
+        
+        )
+      
+
+      console.log(game_rolls)
+  
 }
+
+
