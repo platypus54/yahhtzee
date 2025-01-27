@@ -91,8 +91,12 @@ class Scoring{
         if(noDupes.has(value)) 
           count++;
       })
+
       if(count == 4)
         return this.sumCountedDice();
+      else
+        count = 0;
+      
     }
     return 0;
   }
