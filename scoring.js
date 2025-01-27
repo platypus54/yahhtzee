@@ -45,6 +45,7 @@ class Scoring{
   }
 
 
+
   sumCountedDice()
   {
     let sum = 0;
@@ -85,9 +86,9 @@ class Scoring{
     let noDupes = new Set(this.sortedDice);
     let count = 0;
 
-    for (outcome of possibles) {
+    for (let outcome of possibles) {
       outcome.forEach((value) => {
-        if(noDupes.includes(value)) 
+        if(noDupes.has(value)) 
           count++;
       })
       if(count == 4)

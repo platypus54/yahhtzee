@@ -20,6 +20,7 @@ function main()
 {
   
   diceList = new DiceCollection;
+  cat = new Categories;
   
   scoreboard = new ScoreBoard;
   let game_rolls = 0;
@@ -42,11 +43,8 @@ function main()
             this.style.backgroundColor = "lightblue";
           })
          }
-    
         }
-        
-        )
-      
+      )
 
       console.log(game_rolls)
   

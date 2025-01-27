@@ -4,11 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yahtzee Scorecard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .scoreboard-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 45%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        tfoot th {
+            background-color: #f9f9f9;
+        }
+
+        .section-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dice-container {
+            margin-top: 20px;
+        }
+
+        .dice {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            line-height: 50px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #fff;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .dice.held {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+   
 <body>
+    <h1>Yahtzee Scoreboard</h1>
+    <div class="scoreboard-container">
+        <!-- Upper Section -->
+        <table>
+            <thead>
+                <tr class="section-header">
+                    <th colspan="2">Upper Section</th>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ones</td>
+                    <td id="ones"></td>
+                </tr>
+                <tr>
+                    <td>Twos</td>
+                    <td id="twos"></td>
+                </tr>
+                <tr>
+                    <td>Threes</td>
+                    <td id="threes"></td>
+                </tr>
+                <tr>
+                    <td>Fours</td>
+                    <td id="fours"></td>
+                </tr>
+                <tr>
+                    <td>Fives</td>
+                    <td id="fives"></td>
+                </tr>
+                <tr>
+                    <td>Sixes</td>
+                    <td id="sixes"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Upper Total</th>
+                    <th id="upper-total"></th>
+                </tr>
+                <tr>
+                    <th>Bonus (35 if >= 63)</th>
+                    <th id="upper-bonus"></th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Lower Section -->
+        <table>
+            <thead>
+                <tr class="section-header">
+                    <th colspan="2">Lower Section</th>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Three of a Kind</td>
+                    <td id="three-kind-score"></td>
+                </tr>
+                <tr>
+                    <td>Four of a Kind</td>
+                    <td id="four-kind-score"></td>
+                </tr>
+                <tr>
+                    <td>Full House</td>
+                    <td id="full-house-score"></td>
+                </tr>
+                <tr>
+                    <td>Small Straight</td>
+                    <td id="small-straight-score"></td>
+                </tr>
+                <tr>
+                    <td>Large Straight</td>
+                    <td id="large-straight-score"></td>
+                </tr>
+                <tr>
+                    <td>Yahtzee</td>
+                    <td id="yahtzee-score"></td>
+                </tr>
+                <tr>
+                    <td>Chance</td>
+                    <td id="chance-score"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Lower Total</th>
+                    <th id="lower-total"></th>
+                </tr>
+                <tr>
+                    <th>Grand Total</th>
+                    <th id="grand-total"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <button id="roll">ROLL DICE!</button>
+
+
 <script src="dice.js"></script>
 <script src="scoring.js"></script>
+<script src="category.js"></script>
+<script src="ScoreBoard.js"></script>
 <script src="yahtzee.js"></script>
-
-
 </body>
 </html>
