@@ -45,43 +45,39 @@ class DiceCollection {
 
   roll()
   {
-    let diceFields = document.querySelectorAll("dice");
-
-     /* for (var i = 0; i < 5; i++) {
-        this.yahtzeeDice[i].roll();
-        document.getElementById(`dice${i + 1}`).innerHTML = this.yahtzeeDice[i].getValue();
-      }*/
+    //let diceFields = document.querySelectorAll("dice");
 
     this.dice.forEach((die,key) => {
-      die.roll(),key;
+      die.roll();
       document.getElementById(key).innerHTML = die.getValue();
     });
   }
 
-checkDice(){
+   addDiceHoldEvents(){
+    let diceFields = document.querySelectorAll(".dice");
+    let dice = this.dice;
 
-  for (var i = 0; i < 5; i++) {
-      
-      let dice = this.yahtzeeDice[i]
-
-      document.getElementById(`dice${i + 1}`).addEventListener("click",function(){
-          if(dice.getHold())
-          {
-            dice.setHold(false);
-            this.style.backgroundColor = "white"
-          }
-          else
-          {
-            dice.setHold(true);
-            this.style.backgroundColor = "lightyellow"
-          }
-
-        }
-
-      )
-
-    }
-
+    diceFields.forEach((field, index) => {
+        console.log(field, index)
+        
+        field.addEventListener("click", function()
+        {
+          document.getElementById(`${field.id}`).addEventListener("click",function(){ 
+            
+            
+            if(dice.get(val.id))
+              {
+                dice.
+                this.style.backgroundColor = "white"
+              }
+              else
+              {
+                dice.setHold(true);
+                this.style.backgroundColor = "lightyellow"
+              }
+          })
+        })
+    });
   }
 
 
