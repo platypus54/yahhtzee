@@ -45,14 +45,12 @@ class DiceCollection {
 
   roll()
   {
-    //let diceFields = document.querySelectorAll("dice");
-
     this.dice.forEach((die,key) => {
       die.roll();
       document.getElementById(key).innerHTML = die.getValue();
     });
+  
   }
-
    addDiceHoldEvents(){
     let diceFields = document.querySelectorAll(".dice");
     let dice = this.dice;
@@ -62,25 +60,19 @@ class DiceCollection {
         
         field.addEventListener("click", function()
         {
-          document.getElementById(`${field.id}`).addEventListener("click",function(){ 
             
-            
-            if(dice.get(val.id))
-              {
-                dice.
-                this.style.backgroundColor = "white"
-              }
-              else
-              {
-                dice.setHold(true);
-                this.style.backgroundColor = "lightyellow"
-              }
-          })
+            if(dice.get(field.id).getHold())
+            {
+              dice.get(field.id).setHold(false);
+              this.style.backgroundColor = "white"
+            }
+            else
+            {
+              dice.get(field.id).setHold(true);;
+              this.style.backgroundColor = "lightyellow"
+            }
+
         })
     });
   }
-
-
-
-
 }
