@@ -6,7 +6,7 @@ class Category {
   }
 
   get isSelected(){
-    return this._isSelectedisSelected;
+    return this._isSelected;
   }
 
   set isSelected(selected){
@@ -22,7 +22,6 @@ class Category {
   }
 }
 
-
 class Categories {
 
     #upperFields = [
@@ -32,19 +31,19 @@ class Categories {
     "fours", 
     "fives", 
     "sixes",
-    "upper-bonus",
-    "upper-total"]
+    "upper bonus",
+    "upper total"]
 
     #lowerFields = [
-    "three-kind-score", 
-    "four-kind-score", 
-    "full-house-score",
-    "small-straight-score", 
-    "large-straight-score", 
-    "yahtzee-score", 
-    "chance-score",
-    "bonus-yahtzee",
-    "lower-total"
+    "three of a kind", 
+    "four of a kind", 
+    "full house",
+    "small straight", 
+    "large straight", 
+    "yahtzee", 
+    "chance",
+    "bonus",
+    "lower total"
     ];
 
   constructor() {
