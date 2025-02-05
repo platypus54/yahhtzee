@@ -6,28 +6,24 @@ class Scoring{
   this.countedDice = Array(6).fill(0)
 } 
 
-/*
-  copy(list)
+  copy(diceMap)
   {
-      list.forEach((dice, index) => {
-        this.sortedDice[index] = dice.getValue();
+    let index = 0; 
+    diceMap.forEach((element) => {
+        this.sortedDice[index++] = element.getValue();
       });
   }
-*/
 
-/*
   sort()
   {
     this.sortedDice.sort()
   }
-*/
 
   count()
   {
     this.sort()
 
     let total = 0;
-
     for (let outcomes = 0; outcomes < this.sortedDice.length; outcomes++) 
       {
         let dice_value = this.sortedDice[outcomes];
@@ -37,16 +33,9 @@ class Scoring{
     }
   }
 
-   find(key){
-    this.countedDice.includes(key);
-   }
-
-
   resetCountedDice(){
     this.countedDice.fill(0);
   }
-
-
 
   sumCountedDice()
   {
@@ -61,7 +50,7 @@ class Scoring{
 
   threeOfAKind()
   {
-    if(this.find(3))
+    if(this.countedDice.includes(3))
       return this.sumCountedDice(); 
     else
       return 0;
@@ -69,7 +58,7 @@ class Scoring{
 
   fourOfAKind()
   {
-    if(this.find(4))
+    if(this.countedDice.includes(4))
       return this.sumCountedDice(); 
     else
       return 0;
@@ -77,7 +66,7 @@ class Scoring{
 
   fullHouse()
   {
-    if(this.find(3) && this.find(2))
+    if(this.countedDice.includes(3) && this.countedDice.includes(2))
       return 25; 
     else
       return 0;  
@@ -127,7 +116,7 @@ class Scoring{
 
   
   yahtzee() {
-    if(this.find(5))
+    if(this.countedDice.includes(5))
       return 50; 
     else
       return 0;
