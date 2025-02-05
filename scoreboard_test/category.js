@@ -30,9 +30,7 @@ class Categories {
     "threes", 
     "fours", 
     "fives", 
-    "sixes",
-    "upper bonus",
-    "upper total"]
+    "sixes"]
 
     #lowerFields = [
     "three of a kind", 
@@ -41,9 +39,7 @@ class Categories {
     "small straight", 
     "large straight", 
     "yahtzee", 
-    "chance",
-    "bonus",
-    "lower total"
+    "chance"
     ];
 
   constructor() {
@@ -59,7 +55,25 @@ class Categories {
     });
   }
 
+  areUpperCategoriesComplete(){
+      for (const [key, value] of this.upperCategories) {
+        // check to see if a category is not selected
+          if(!value.isSelected)
+              return false;
+      }
+      // all items have been selected
+      return true;
+  }
 
+  areLowerCategoriesComplete(){
+    for (const [key, value] of this.lowerCategories) {
+      // check to see if a category is not selected
+        if(!value.isSelected)
+            return false;
+    }
+    // all items have been selected
+    return true;
+  }
 
 }
 

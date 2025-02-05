@@ -75,6 +75,9 @@ score.categories.upperCategories.forEach((element, key,map) =>{
       rollCounterField.innerHTML = `Rolls: ${d.rolls}`;
 
       d.resetHolds();
+
+      if( score.categories.areUpperCategoriesComplete())
+        return alert('all fields are chosen')
     }
   })    
  })
@@ -95,6 +98,8 @@ score.categories.upperCategories.forEach((element, key,map) =>{
       d.rolls = 0;
       rollCounterField.innerHTML = `Rolls: ${d.rolls}`;
       d.resetHolds();
+      if( score.categories.areLowerCategoriesComplete())
+        return alert('all fields are chosen')
     }
   })    
  })
