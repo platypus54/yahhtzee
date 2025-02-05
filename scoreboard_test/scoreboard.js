@@ -17,7 +17,6 @@ calculateUpperScore(){
   
   let index = 0;
   this.categories.upperCategories.forEach((element, key) => {
-    console.log(key)
     if(!element.isSelected)
     {
       document.getElementById(key).innerHTML = this.upperScore[index++];
@@ -27,15 +26,38 @@ calculateUpperScore(){
 
 }
 
-calculateLowerScore(){
-  console.log("whereee")
-  document.getElementById("three of a kind").innerHTML = this.score.threeOfAKind();
-  document.getElementById("four of a kind").innerHTML = this.score.fourOfAKind();
-  document.getElementById("full house").innerHTML = this.score.fullHouse(); 
-  document.getElementById("small straight").innerHTML = this.score.smallStraight();
-  document.getElementById("large straight").innerHTML = this.score.largeStraight();
-  document.getElementById("yahtzee").innerHTML = this.score.yahtzee();
-  document.getElementById("chance").innerHTML = this.score.chance();
+calculateLowerScore(){  
+this.categories.lowerCategories.forEach((element,key)=>{
+  if(!element.isSelected)
+  {
+    switch (key) {
+      case "three of a kind":
+        document.getElementById(key).innerHTML = this.score.threeOfAKind()
+        break;
+      case "four of a kind":
+        document.getElementById(key).innerHTML = this.score.fourOfAKind();
+        break;
+      case "full house":
+        document.getElementById(key).innerHTML = this.score.fullHouse(); 
+        break;
+      case "small straight":
+        document.getElementById(key).innerHTML = this.score.smallStraight();
+        break;
+      case "large striaght":
+        document.getElementById(key).innerHTML = this.score.largeStraight();
+        break;
+      case "yahtzee":
+        document.getElementById(key).innerHTML = this.score.yahtzee();
+        break;
+      case "chance":
+        document.getElementById(key).innerHTML = this.score.chance();
+        break;
+      default:
+        break;
+    }
+  }
+  })
+
 }
 
 calculateScores() {
