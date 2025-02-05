@@ -42,7 +42,7 @@ class Scoring{
     let sum = 0;
 
     this.countedDice.forEach((element,index) => {
-      sum += (index + 1) * this.countedDice[index];
+      sum += (index + 1) * element;
     });
 
     return sum;
@@ -70,6 +70,17 @@ class Scoring{
       return 25; 
     else
       return 0;  
+  }
+
+  yahtzee() {
+    if(this.countedDice.includes(5))
+      return 50; 
+    else
+      return 0;
+  }
+
+  chance() {
+    return this.sumCountedDice();
   }
 
   smallStraight() {
@@ -115,16 +126,7 @@ class Scoring{
   }
 
   
-  yahtzee() {
-    if(this.countedDice.includes(5))
-      return 50; 
-    else
-      return 0;
-  }
 
-  chance() {
-    return this.sumCountedDice();
-  }
 
 
   displayCount(){

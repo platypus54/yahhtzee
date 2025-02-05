@@ -49,4 +49,12 @@ class DiceCollection {
       document.getElementById(key).innerHTML = die.getValue();
     });
   }
+
+  resetHolds()
+  {
+      this.dice.forEach((die,key) => {
+        die.isHeld = false;
+        document.getElementById(key).style.backgroundColor = "white";
+      })
+  }
 }

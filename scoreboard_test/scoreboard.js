@@ -43,7 +43,7 @@ this.categories.lowerCategories.forEach((element,key)=>{
       case "small straight":
         document.getElementById(key).innerHTML = this.score.smallStraight();
         break;
-      case "large striaght":
+      case "large straight":
         document.getElementById(key).innerHTML = this.score.largeStraight();
         break;
       case "yahtzee":
